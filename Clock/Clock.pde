@@ -27,7 +27,6 @@ void setup() {
 }
 
 void loop(){
-  
   // call the digital clock function
   String timestr = digitalClockDisplay();
   char lcdtimestr[10] = "";
@@ -51,7 +50,6 @@ void loop(){
 }
 
 String digitalClockDisplay(){
-  
   // build the time string
   String timestr = "";
   timestr += hour();
@@ -64,7 +62,6 @@ String digitalClockDisplay(){
 }
 
 String digitalDateDisplay(){
-  
   // build the date string
   String datestr = "";
   datestr += String(dayStr(weekday())).substring(0,3);
@@ -79,7 +76,6 @@ String digitalDateDisplay(){
 }
 
 String printDigits(int digits){
-  
   // append the time digit with a zero if it is less than 10
   String appended = String("");
   if(digits < 10)
