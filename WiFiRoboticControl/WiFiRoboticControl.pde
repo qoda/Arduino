@@ -50,7 +50,7 @@ void loop() {
         // Check the query string and set the LED state accordingly
         if (read_input) {
           // Send a standard http response header
-          client.println("HTTP/1.0 200 OK");
+          client.println("HTTP/1.1 200 OK");
           client.println("Content-Type: text/html");
           client.println();
     
