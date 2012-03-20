@@ -11,6 +11,9 @@ const int sensorRightPin = 4;
 // instantiate the digital pin
 const int irPin = 3;
 
+// instantiate the led pin
+const int ledPin = 13;
+
 void setup() {
   // setup all the required pin modes
   pinMode(sensorTopPin, INPUT);
@@ -18,6 +21,7 @@ void setup() {
   pinMode(sensorBottomPin, INPUT);
   pinMode(sensorRightPin, INPUT);
   pinMode(irPin, OUTPUT);
+  pinMode(ledPin, OUTPUT);
   
   // setup the serial pin for debugging
   Serial.begin(9600);
@@ -54,5 +58,12 @@ void loop() {
   Serial.println("-----------------------------");
   Serial.println();
   
-  delay(2000);
+  if(sensorAvg > 300) {
+    digitalWrite(ledPin, HIGH);
+  }
+  else {
+    digitalWrite(ledPin, LOW);
+  }
+  
+  delay(1000);
 }
