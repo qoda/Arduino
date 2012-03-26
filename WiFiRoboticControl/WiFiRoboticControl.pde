@@ -10,10 +10,10 @@ Server server(80);
 boolean read_input = false;
 
 // Instantiate the direction and speed (pwm) pins.
-int directionPinLeft = 2;
-int directionPinRight = 4;
-int speedPinLeft = 3;
-int speedPinRight = 5;
+const int directionPinLeft = 2;
+const int directionPinRight = 4;
+const int speedPinLeft = 3;
+const int speedPinRight = 5;
 
 void setup() {
   WiFly.begin();
