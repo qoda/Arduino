@@ -2,7 +2,7 @@
 #define __CREDENTIALS_H__
 
 // Wifi parameters
-char passphrase[] = "***";
-char ssid[] = "***";
+char passphrase[] = "0004edae25ef";
+char ssid[] = "qoda-ap";
 
 #endif

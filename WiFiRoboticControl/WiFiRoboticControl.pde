@@ -10,10 +10,13 @@ Server server(80);
 boolean read_input = false;
 
 // Instantiate the direction and speed (pwm) pins.
-const int directionPinLeft = 2;
-const int directionPinRight = 4;
-const int speedPinLeft = 3;
-const int speedPinRight = 5;
+const int directionPinRight = 2;
+const int directionPinLeft = 4;
+const int speedPin = 3;
+
+int const SpeedFull = 255;
+int const SpeedHalf = 128;
+int const SpeedStopped = 0;
 
 void setup() {
   WiFly.begin();
@@ -29,10 +32,9 @@ void setup() {
   Serial.println(WiFly.ip());
   
   // Set the pins as output pins
-  pinMode(speedPinLeft, OUTPUT);
-  pinMode(directionPinLeft, OUTPUT);
-  pinMode(speedPinRight, OUTPUT);
   pinMode(directionPinRight, OUTPUT);
+  pinMode(directionPinLeft, OUTPUT);
+  pinMode(speedPin, OUTPUT);
   
   server.begin();
 }
@@ -56,9 +58,8 @@ void loop() {
     
           // Go forward
           if (command == 'f') {
-            digitalWrite(speedPinLeft, HIGH);
+            digitalWrite(speedPin, SpeedFull);
             digitalWrite(directionPinLeft, HIGH);
-            digitalWrite(speedPinRight, HIGH);
             digitalWrite(directionPinRight, HIGH);
             client.println("Going forward.");
             break;
@@ -66,9 +67,8 @@ void loop() {
           
           // Go backwards
           else if (command == 'b') {
-            digitalWrite(speedPinLeft, HIGH);
+            digitalWrite(speedPin, SpeedHalf);
             digitalWrite(directionPinLeft, LOW);
-            digitalWrite(speedPinRight, HIGH);
             digitalWrite(directionPinRight, LOW);
             client.println("Going backwards.");
             break;
@@ -76,9 +76,8 @@ void loop() {
           
           // Go left
           else if (command == 'l') {
-            digitalWrite(speedPinLeft, HIGH);
+            digitalWrite(speedPin, SpeedHalf);
             digitalWrite(directionPinLeft, LOW);
-            digitalWrite(speedPinRight, HIGH);
             digitalWrite(directionPinRight, HIGH);
             client.println("Going left.");
             break;
@@ -86,9 +85,8 @@ void loop() {
           
           // Go right
           else if (command == 'r') {
-            digitalWrite(speedPinLeft, HIGH);
+            digitalWrite(speedPin, SpeedHalf);
             digitalWrite(directionPinLeft, HIGH);
-            digitalWrite(speedPinRight, HIGH);
             digitalWrite(directionPinRight, LOW);
             client.println("Going right.");
             break;
@@ -96,9 +94,8 @@ void loop() {
           
           // Stop
           else if (command == 's') {
-            digitalWrite(speedPinLeft, LOW);
+            digitalWrite(speedPin, SpeedStopped);
             digitalWrite(directionPinLeft, LOW);
-            digitalWrite(speedPinRight, LOW);
             digitalWrite(directionPinRight, LOW);
             client.println("Stopping.");
             break;
