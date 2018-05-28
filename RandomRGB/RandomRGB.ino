@@ -21,9 +21,10 @@ void setup () {
 void loop () {
   
   // Give the colour values random values depending on the previous values
-  redVal = random(0, 100);
-  greenVal = random(0, redVal);
-  blueVal = random(0, greenVal);
+  redVal = random(0, 255);
+  greenVal = random(0, 255);
+  blueVal = random(0, 255);
+  
   
   // Write the values to the digital pins
   analogWrite(redPin, redVal);

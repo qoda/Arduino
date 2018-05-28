@@ -10,12 +10,12 @@ Requires:
 
 */ 
 
-#include <ITDB02_Graph.h>
+#include <UTFT.h>
 #include <Time.h>
 
 // instantiate the font and ITDB02 object
 extern uint8_t BigFont[];
-ITDB02 myGLCD(19, 18, 17, 16); 
+UTFT myGLCD(ITDB24DWOT, 19, 18, 17, 16); 
 
 void setup() {
   // initialise the LCD in landscape mode and clear screen
