@@ -34,7 +34,7 @@ void setup() {
   
   // move the servo to a start position
   servo_pan.write(90);
-  servo_tilt.write(70);
+  servo_tilt.write(90);
   
   // output to serial
   Serial.begin(9600);
