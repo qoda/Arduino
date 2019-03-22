@@ -13,6 +13,7 @@ int greenVal = 0;
 int blueVal = 0;
 
 void setup () {
+  Serial.begin(9600);
   pinMode(redPin, OUTPUT);
   pinMode(greenPin, OUTPUT);
   pinMode(bluePin, OUTPUT);
@@ -30,6 +31,15 @@ void loop () {
   analogWrite(redPin, redVal);
   analogWrite(greenPin, greenVal);
   analogWrite(bluePin, blueVal);
+
+  Serial.print("Red: ");
+  Serial.println(redVal);
+
+  Serial.print("Green: ");
+  Serial.println(greenVal);
+
+  Serial.print("Blue: ");
+  Serial.println(blueVal);
 
   delay(1000);
 }
