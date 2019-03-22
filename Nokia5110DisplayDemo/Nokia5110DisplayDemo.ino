@@ -17,12 +17,12 @@ All text above, and the splash screen must be included in any redistribution
 #include <Adafruit_PCD8544.h>
 
 // Software SPI (slower updates, more flexible pin options):
-// pin 7 - Serial clock out (SCLK)
-// pin 6 - Serial data out (DIN)
+// pin 13 - Serial clock out (CLK)
+// pin 11 - Serial data out (DIN)
 // pin 5 - Data/Command select (D/C)
-// pin 4 - LCD chip select (CS)
+// pin 4 - LCD chip select (CE)
 // pin 3 - LCD reset (RST)
-Adafruit_PCD8544 display = Adafruit_PCD8544(7, 6, 5, 4, 3);
+Adafruit_PCD8544 display = Adafruit_PCD8544(13, 11, 5, 4, 3);
 
 // Hardware SPI (faster, but must use certain hardware pins):
 // SCK is LCD serial clock (SCLK) - this is pin 13 on Arduino Uno
@@ -69,7 +69,7 @@ void setup()   {
 
   // you can change the contrast around to adapt the display
   // for the best viewing!
-  display.setContrast(50);
+  display.setContrast(90);
 
   display.display(); // show splashscreen
   delay(2000);
@@ -122,7 +122,7 @@ void setup()   {
   testdrawtriangle();
   delay(2000);
   display.clearDisplay();
-   
+
   testfilltriangle();
   delay(2000);
   display.clearDisplay();
@@ -168,9 +168,9 @@ void setup()   {
 
   // invert the display
   display.invertDisplay(true);
-  delay(1000); 
+  delay(1000);
   display.invertDisplay(false);
-  delay(1000); 
+  delay(1000);
 
   // draw a bitmap icon and 'animate' movement
   testdrawbitmap(logo16_glcd_bmp, LOGO16_GLCD_WIDTH, LOGO16_GLCD_HEIGHT);
@@ -178,20 +178,20 @@ void setup()   {
 
 
 void loop() {
-  
+
 }
 
 
 void testdrawbitmap(const uint8_t *bitmap, uint8_t w, uint8_t h) {
   uint8_t icons[NUMFLAKES][3];
   randomSeed(666);     // whatever seed
- 
+
   // initialize
   for (uint8_t f=0; f< NUMFLAKES; f++) {
     icons[f][XPOS] = random(display.width());
     icons[f][YPOS] = 0;
     icons[f][DELTAY] = random(5) + 1;
-    
+
     Serial.print("x: ");
     Serial.print(icons[f][XPOS], DEC);
     Serial.print(" y: ");
@@ -207,7 +207,7 @@ void testdrawbitmap(const uint8_t *bitmap, uint8_t w, uint8_t h) {
     }
     display.display();
     delay(200);
-    
+
     // then erase it + move it
     for (uint8_t f=0; f< NUMFLAKES; f++) {
       display.drawBitmap(icons[f][XPOS], icons[f][YPOS],  logo16_glcd_bmp, w, h, WHITE);
@@ -234,7 +234,7 @@ void testdrawchar(void) {
     display.write(i);
     //if ((i > 0) && (i % 14 == 0))
       //display.println();
-  }    
+  }
   display.display();
 }
 
@@ -292,7 +292,7 @@ void testfillroundrect(void) {
     display.display();
   }
 }
-   
+
 void testdrawrect(void) {
   for (int16_t i=0; i<display.height()/2; i+=2) {
     display.drawRect(i, i, display.width()-2*i, display.height()-2*i, BLACK);
@@ -300,7 +300,7 @@ void testdrawrect(void) {
   }
 }
 
-void testdrawline() {  
+void testdrawline() {
   for (int16_t i=0; i<display.width(); i+=4) {
     display.drawLine(0, 0, i, display.height()-1, BLACK);
     display.display();
@@ -310,7 +310,7 @@ void testdrawline() {
     display.display();
   }
   delay(250);
-  
+
   display.clearDisplay();
   for (int16_t i=0; i<display.width(); i+=4) {
     display.drawLine(0, display.height()-1, i, 0, BLACK);
@@ -321,7 +321,7 @@ void testdrawline() {
     display.display();
   }
   delay(250);
-  
+
   display.clearDisplay();
   for (int16_t i=display.width()-1; i>=0; i-=4) {
     display.drawLine(display.width()-1, display.height()-1, i, 0, BLACK);
@@ -339,7 +339,7 @@ void testdrawline() {
     display.display();
   }
   for (int16_t i=0; i<display.width(); i+=4) {
-    display.drawLine(display.width()-1, 0, i, display.height()-1, BLACK); 
+    display.drawLine(display.width()-1, 0, i, display.height()-1, BLACK);
     display.display();
   }
   delay(250);
