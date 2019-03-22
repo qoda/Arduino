@@ -1,4 +1,3 @@
-
 #include <Servo.h>
 
 // instantiate servo pins
