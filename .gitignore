@@ -1,3 +1,4 @@
 *.elf
 *.hex
 .DS_STORE
+libraries/
