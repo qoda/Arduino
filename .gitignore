@@ -2,3 +2,4 @@
 *.hex
 .DS_STORE
 libraries/
+.config
